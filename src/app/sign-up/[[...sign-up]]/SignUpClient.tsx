@@ -53,7 +53,12 @@ const SignUpClient = () => {
   }
 
   if (loading) {
-    return <div>Magic link sent. Waiting for a response...</div>;
+    return (
+      <div>
+        <div id="clerk-captcha"></div>
+        <div>Magic link sent. Waiting for a response...</div>
+      </div>
+    );
   }
 
   if (verified) {
