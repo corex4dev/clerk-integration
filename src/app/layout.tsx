@@ -1,16 +1,11 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import {
-  ClerkProvider,
-  SignedIn,
-  SignedOut,
-  SignInButton,
-  SignUpButton,
-} from "@clerk/nextjs";
+import { SignedIn, SignedOut, SignInButton, SignUpButton } from "@clerk/nextjs";
 import Link from "next/link";
-import { ThemeProvider } from "next-themes";
 import UserButtonClient from "@/components/UserButtonClient";
+import Providers from "./Providers";
+import { ThemeProvider } from "next-themes";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -38,7 +33,7 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased bg-foreground text-background dark:bg-background dark:text-foreground`}
       >
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
-          <ClerkProvider>
+          <Providers>
             <header className="flex justify-between items-center p-4 gap-4 h-16">
               <div className="flex gap-4">
                 <Link href="/">Home</Link>
@@ -55,7 +50,7 @@ export default function RootLayout({
               </div>
             </header>
             {children}
-          </ClerkProvider>
+          </Providers>
         </ThemeProvider>
       </body>
     </html>
