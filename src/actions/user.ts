@@ -1,6 +1,7 @@
 "use server";
 
 import { UserJSON } from "@clerk/nextjs/server";
+import { addRole } from "./roles";
 
 export type LocalUser = {
   id: string;
@@ -20,6 +21,8 @@ export const createUser = async (user: UserJSON) => {
     },
     body: JSON.stringify(parseUser(user)),
   });
+
+  addRole(user.id, "user");
 
   return res.json();
 };
